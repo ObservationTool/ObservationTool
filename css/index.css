@@ -1,0 +1,62 @@
+.form-container{
+    display: flex;
+    justify-content: center;
+} .form-container form{
+    width: 40vw;
+} .form-container input{
+    width: 100%;
+}
+
+#agregar{
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    right: 0px;
+    z-index: 2;
+    border: none;
+    top: 2px;
+    height: 30px;
+    cursor: pointer;
+    color: white;
+    background-color: #1e90ff;
+    transform: translateX(2px);
+}
+
+#variableSeconds{
+    display: none;
+}
+
+.sessionList {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
+  .sessionList li {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .sessionList li:hover {
+    background-color: #eee;
+  }
+  
+  .close {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    padding: 12px 16px;
+    transform: translate(0%, -50%);
+  }
+  
+  .close:hover {background: #bbb;}
