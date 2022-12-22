@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/observation.css" type = "text/css">
 </head>
 <body>
     <div class = "container">
         <h1 data-bind = "text : sessionName"></h1>
         <div class="container">
-            <table >
-                <tr data-bind="foreach: subjects">
+            <table data-bind="foreach: names">
+                <tr>
                     <th data-bind="text : $data"></th>
+                </tr>
+                <tr class = "categories-row" data-bind="foreach: getCategories($data)">
+                    <td data-bind="text : $data"></td>
                 </tr>
             </table>
         </div>
