@@ -10,16 +10,20 @@
     <div class = "container">
         <h1 data-bind = "text : sessionName"></h1>
         <div class="container">
-            <table data-bind="foreach: names">
+            <table data-bind="foreach: subjects">
                 <tr>
                     <th data-bind="text : $data"></th>
                 </tr>
-                <tr class = "categories-row" data-bind="foreach: getCategories($data)">
-                    <td data-bind="text : $data"></td>
+                <tr class = "categories-row" data-bind="foreach: categories">
+                    <td><button data-bind="text : $data"></button></td>
+                </tr>
+                <tr>
+                    <td><p>messi: 1</p></td>
                 </tr>
             </table>
         </div>
     </div>
+    <script src = "../lib/jquery.js"></script>
     <script src = "../lib/knockout.js"></script>
     <script src = "../js/observation.js"></script>
 </body>

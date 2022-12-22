@@ -1,11 +1,13 @@
 var index = (function(){
     self = this;
 
+    //Esconde el formulario que añade una nueva sesion
     formContainer = $(".form-container");
     formContainer.hide();
 
     homeContainer = $("#home");
 
+    //Desplega el intervalo random si este es seleccionado
     random = $("#intervalRandom");
     random.click(function(){
         if (self.random.is(":checked")){
@@ -15,12 +17,14 @@ var index = (function(){
         }
     })
 
+    //Abre el formulario para crear una nueva sesio
     createSession = $("#createSession");
     createSession.click(function(){
         formContainer.toggle();
         homeContainer.toggle();
     })
 
+    //Añade los sujetos del formulario a una lista
     self.subjects = [];
     addSubj = $("#addSubj");
     addSubj.click(function(){
@@ -33,6 +37,7 @@ var index = (function(){
         }
     })
 
+    //Añade las categorias a una lista
     self.categories = [];
     addCat = $("#addCat");
     addCat.click(function(){
@@ -44,16 +49,15 @@ var index = (function(){
             alert("Agregue el nombre del sujeto")
         }
     })
-    
-    document.querySelector(".form-container").addEventListener('submit', submitSession);
 
+    //Saca los objetos del localstorage si ya estan creados
     sessionsInfo = JSON.parse(localStorage.getItem("observadorSessionsInfo"));
     if (sessionsInfo == null){
         sessionsInfo = {}
     }
 
+    //Añade las sesiones al menu
     sessionList = $(".sessionList");
-
     if (sessionsInfo != null){
         Object.keys(sessionsInfo).forEach(sessionIndex => {
             sessionList.append('<li>' + sessionsInfo[sessionIndex]["name"] + '<span class="close">x</span></li>');
@@ -65,7 +69,9 @@ var index = (function(){
             })(sessionIndex));
         });
     }
-
+    
+    //Guarda toda la informacion del cuestionario en el localstorage
+    document.querySelector(".form-container").addEventListener('submit', submitSession);
     function submitSession(event){
         event.preventDefault();
         if (sessionsInfo[$("#name").val()] == null){
@@ -96,6 +102,7 @@ var index = (function(){
             alert("Esta session ya ha sido agregada")
         }
 
+        //guarda el cuestionario
         formContainer.toggle();
         homeContainer.toggle();
         $("#session-form").trigger("reset");

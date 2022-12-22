@@ -2,3 +2,8 @@ table{
     display: flex;
     justify-content: center;
 }
+
+tr{
+    display: flex;
+    flex-direction: column;
+}
