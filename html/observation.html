@@ -10,15 +10,15 @@
     <div class = "container">
         <h1 data-bind = "text : sessionName"></h1>
         <div class="container">
-            <table data-bind="foreach: subjects">
+            <table data-bind="foreach: Object.keys(subjectArray)">
                 <tr>
                     <th data-bind="text : $data"></th>
                 </tr>
-                <tr class = "categories-row" data-bind="foreach: categories">
-                    <td><button data-bind="text : $data"></button></td>
+                <tr class = "categories-row" data-bind="foreach: Object.keys(subjectArray[$data])">
+                    <td><button class="categories-btn" data-bind="text : $data + ' ' + subjectArray[$parent][$data], click : function(data, event) { prueba($parent, data, $element) }"></button></td>
                 </tr>
                 <tr>
-                    <td><p>messi: 1</p></td>
+                    <td><p data-bind = "text : 'Total ' + getTotal($data)"></p></td>
                 </tr>
             </table>
         </div>

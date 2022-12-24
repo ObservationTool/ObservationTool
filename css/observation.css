@@ -7,3 +7,7 @@ tr{
     display: flex;
     flex-direction: column;
 }
+
+.categories-btn{
+    width: 100%;
+}
