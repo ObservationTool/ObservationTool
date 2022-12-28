@@ -81,8 +81,11 @@ var index = (function(){
         });
         return subjectArray;
     }
-
-    // this.subjectArray = {"messi" : {"parpadea" : 0, "come" : 0}, "sergio" : {"parpadea" : 0}}
+    
+    delSesion = $("#borrar-sesiones");
+    delSesion.click(function(){
+        localStorage.clear()
+    })
     
     //Guarda toda la informacion del cuestionario en el localstorage
     document.querySelector(".form-container").addEventListener('submit', submitSession);
