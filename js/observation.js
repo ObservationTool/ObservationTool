@@ -3,21 +3,9 @@ var observation = function(){
     self.sessions = JSON.parse(localStorage.getItem("observadorSessionsInfo"))
     self.actualSession = sessions[localStorage.getItem("actualSessionInfo")];
     self.sessionName = ko.observable(actualSession["name"]);
-    self.subjects = self.actualSession["subjects"];
-    self.categories = self.actualSession["categories"];
+    self.subjectArray = self.actualSession["subjectArray"];
+    console.log(subjectArray)
 
-    self.subjectArray = {};
-
-    subjects.forEach(subject => {
-        self.subjectArray[subject] = {}
-        categories.forEach(category => {
-            self.subjectArray[subject][category] = 0;
-        });
-    });
-
-    getCategories = function(subject){
-        return Object.keys(this.subjects[subject]);
-    }
 
     getTotal = function(subject){
         var res = 0;
@@ -64,6 +52,55 @@ var observation = function(){
         }
     }
 
+    //Chronometer settings
+
+    let hours = `00`,
+      minutes = `00`,
+      seconds = `00`,
+      chronometerDisplay = document.querySelector(`[data-chronometer]`),
+      chronometerCall
+
+    function chronometer() {
+        seconds ++
+
+        if (seconds < 10) seconds = `0` + seconds
+
+        if (seconds > 59) {
+        seconds = `00`
+        minutes ++
+
+        if (minutes < 10) minutes = `0` + minutes
+        }
+
+        if (minutes > 59) {
+        minutes = `00`
+        hours ++
+        
+        if (hours < 10) hours = `0` + hours
+        }
+
+        chronometerDisplay.textContent = `${hours}:${minutes}:${seconds}`
+    }
+
+    play.onclick = (event) => {
+        chronometerCall = setInterval(chronometer, 1000)
+        event.target.setAttribute(`disabled`,``)
+    }
+
+    pause.onclick = () => {
+        clearInterval(chronometerCall)
+        play.removeAttribute(`disabled`)
+    }
+
+    reset.onclick = () => {
+        clearInterval(chronometerCall)
+        play.removeAttribute(`disabled`)
+        chronometerDisplay.textContent = `00:00:00`
+        
+        hours = `00`,
+        minutes = `00`,
+        seconds = `00`
+    }
 }
 ko.applyBindings(observation);
 

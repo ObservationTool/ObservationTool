@@ -69,6 +69,20 @@ var index = (function(){
             })(sessionIndex));
         });
     }
+
+    //Orgnaiza los sujetos en un diccionario con sus respectivas categorias
+    function createSubjectArray(){
+        self.subjectArray = {};
+        self.subjects.forEach(subject => {
+            self.subjectArray[subject] = {}
+            categories.forEach(category => {
+                self.subjectArray[subject][category] = 0;
+            });
+        });
+        return subjectArray;
+    }
+
+    // this.subjectArray = {"messi" : {"parpadea" : 0, "come" : 0}, "sergio" : {"parpadea" : 0}}
     
     //Guarda toda la informacion del cuestionario en el localstorage
     document.querySelector(".form-container").addEventListener('submit', submitSession);
@@ -85,8 +99,7 @@ var index = (function(){
                 flash : $("#flash").val(),
                 fontSize : $("#fontSize").val(),
                 columns : $("#columns").val(),
-                subjects : self.subjects,
-                categories : self.categories
+                subjectArray : createSubjectArray()
             }
             sessionList.append('<li>' + newItem["name"] + '<span class="close">x</span></li>');
             sessionsInfo[Object.keys(sessionsInfo).length] = newItem;

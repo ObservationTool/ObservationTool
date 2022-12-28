@@ -25,10 +25,17 @@
                 </tr>
             </table>
         </div>
+        <div class="cronometer-container">
+            <h3 data-chronometer>00:00:00</h3>
+            <button id="play">play</button>
+            <button id="pause">pause</button>
+            <button id="reset">reset</button>
+        </div>
         <div class="button-container">
             <button id = "guardar" data-bind="click : function(data, event) { guardarExcel('categories-table') }">Guardar</button>
             <button>Cancelar</button>
         </div>
+        
     </div>
     <script src = "../lib/jquery.js"></script>
     <script src = "../lib/knockout.js"></script>
