@@ -84,7 +84,7 @@ var index = (function(){
     
     delSesion = $("#borrar-sesiones");
     delSesion.click(function(){
-        localStorage.clear()
+        window.localStorage.clear()
     })
     
     //Guarda toda la informacion del cuestionario en el localstorage
