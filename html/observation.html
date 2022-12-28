@@ -10,17 +10,24 @@
     <div class = "container">
         <h1 data-bind = "text : sessionName"></h1>
         <div class="container">
-            <table data-bind="foreach: Object.keys(subjectArray)">
+            <table id = "categories-table" data-bind="foreach: Object.keys(subjectArray)">
                 <tr>
                     <th data-bind="text : $data"></th>
                 </tr>
-                <tr class = "categories-row" data-bind="foreach: Object.keys(subjectArray[$data])">
-                    <td><button class="categories-btn" data-bind="text : $data + ' ' + subjectArray[$parent][$data], click : function(data, event) { prueba($parent, data, $element) }"></button></td>
+                <tr class = "categories-row" >
+                    <td data-bind="foreach: Object.keys(subjectArray[$data])"><button class="categories-btn" 
+                            data-bind="text : $data + ' ' + subjectArray[$parent][$data], click : function(data, event) { categoryClick($parent, data, $element) }">
+                        </button>
+                    </td>
                 </tr>
-                <tr>
+                <tr class="total">
                     <td><p data-bind = "text : 'Total ' + getTotal($data)"></p></td>
                 </tr>
             </table>
+        </div>
+        <div class="button-container">
+            <button id = "guardar" data-bind="click : function(data, event) { guardarExcel('categories-table') }">Guardar</button>
+            <button>Cancelar</button>
         </div>
     </div>
     <script src = "../lib/jquery.js"></script>
