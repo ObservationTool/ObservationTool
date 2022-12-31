@@ -3,8 +3,6 @@ var index = (function(){
 
     //Esconde el formulario que añade una nueva sesion
     formContainer = $(".form-container");
-    formContainer.hide();
-
     homeContainer = $("#home");
 
     //Desplega el intervalo random si este es seleccionado
@@ -20,8 +18,8 @@ var index = (function(){
     //Abre el formulario para crear una nueva sesio
     createSession = $("#createSession");
     createSession.click(function(){
-        formContainer.toggle();
-        homeContainer.toggle();
+        formContainer.css("display", "flex");
+        homeContainer.css("display", "none");
     })
 
     //Añade los sujetos del formulario a una lista
@@ -84,7 +82,8 @@ var index = (function(){
     
     delSesion = $("#borrar-sesiones");
     delSesion.click(function(){
-        window.localStorage.clear()
+        window.localStorage.clear();
+        location.reload();
     })
     
     //Guarda toda la informacion del cuestionario en el localstorage
@@ -119,8 +118,8 @@ var index = (function(){
         }
 
         //guarda el cuestionario
-        formContainer.toggle();
-        homeContainer.toggle();
+        formContainer.css("display", "none");
+        homeContainer.css("display", "block");
         $("#session-form").trigger("reset");
         console.log(localStorage.getItem("observadorSessionsInfo"))
     };
