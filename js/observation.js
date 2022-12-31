@@ -7,22 +7,28 @@ var observation = function(){
     self.subjectArray = self.actualSession["subjectArray"];
     self.timerSession = ko.observable('00:00:00');
     self.timerInterval = ko.observable('00:00:00');
+    self.sesInitialTime = self.actualSession["sessionLength"] * 60;
+    self.intInitialTime = self.actualSession["intervalLengthSec"];
     self.sesTotalTime = ko.observable(self.actualSession["sessionLength"] * 60);
-    // console.log(self.actualSession)
+    self.intTotalTime = ko.observable(self.actualSession["intervalLengthSec"]);
+    console.log(self.actualSession)
     
 
     //setting the session timer
     setSessionTimer = function(){
-        if (self.sesTotalTime >= 60){
-            var hours = Math.floor(self.sesTotalTime / 3600);
-            var minutes = Math.floor(self.sesTotalTime / 60) - hours * 60;
-            createChronometer(self.sesTotalTime);
-        }
-    }()
+        var hours = Math.floor(sesTotalTime() / 3600);
+        var minutes = Math.floor(sesTotalTime() / 60) - hours * 60;
+        var seconds = sesTotalTime() - minutes * 60 - hours * 3600;
+        createChronometer(timerSession, hours, minutes, seconds);
+    }
     
+    //setting the interval timer
     setIntervalTimer = function(){
-
-    }()
+        var hours = Math.floor(intTotalTime() / 3600);
+        var minutes = Math.floor(intTotalTime() / 60) - hours * 60;
+        var seconds = intTotalTime() - minutes * 60 - hours * 3600;
+        createChronometer(timerInterval, hours, minutes, seconds);
+    }
 
     guardar = function(){
         localStorage.setItem("observadorSessionsInfo", JSON.stringify(sessions))
@@ -85,56 +91,41 @@ var observation = function(){
     //Chronometer settings
 
     function createChronometer(timer, hours, minutes, seconds = 0){
-        var newTime = "00:00:00";
-        if (hours < 10){
-            newTime = "0" + hours + ":";
-        } else{
-            newTime = hours + ":";
-        }
-        if (minutes < 10){
-            newTime += "0" + minutes + ":";
-        } else{
-            newTime += minutes + ":";
-        }
-        if (seconds < 10){
-            newTime += "0" + seconds;
-        } else{
-            newTime += seconds;
-        }
-        timer(newTime)
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        timer(hours + ":" + minutes + ":" + seconds)
     }
 
-    function chronometer(timer, total){
-        if (total()-1 < 0) {
-            
+    function chronometer(timer, totalTime, interval = false){
+        if (totalTime()-1 < 0) {
             timer("00:00:00");
-            console.log(total())
-            console.log("termine")
+            if (interval){
+                intTotalTime(intInitialTime - 1);
+                beep()
+            }
         } else{
-            var hours = Math.floor(total() / 3600);
-            var minutes = Math.floor(total() / 60) - hours * 60;
-            var seconds = total() - minutes * 60 - hours * 3600
+            var hours = Math.floor(totalTime() / 3600);
+            var minutes = Math.floor(totalTime() / 60) - hours * 60;
+            var seconds = totalTime() - minutes * 60 - hours * 3600
 
             hours = hours < 10 ? "0" + hours : hours;
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
             
-            total(total()-1)
+            totalTime(totalTime()-1)
             timer(hours + ":" + minutes + ":" + seconds);
         }
     }
 
 
-    let hours = `00`,
-      minutes = `00`,
-      seconds = `00`,
-      chronometerCall
+    let chronometerCall;
 
     $("#play").click(function(event){
         chronometerCall = setInterval(function(){
             chronometer(timerSession, sesTotalTime);
-            chronometer(timerInterval)
+            chronometer(timerInterval, intTotalTime, true)
         }, 1000)
         event.target.setAttribute(`disabled`,``)
     })
@@ -144,15 +135,19 @@ var observation = function(){
         play.removeAttribute(`disabled`)
     })
 
-    $("#reset").click(reset)
+    $("#reset").click(function(){
 
-    reset = function(){
+    })
+
+    reset = function(timer, total){
+        
         clearInterval(chronometerCall)
         play.removeAttribute(`disabled`)
-        
-        hours = `00`,
-        minutes = `00`,
-        seconds = `00`
+    }
+
+    init = function(){
+        setSessionTimer();
+        setIntervalTimer();
     }
 }
 ko.applyBindings(observation);
