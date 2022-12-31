@@ -1,11 +1,36 @@
 var observation = function(){
     self = this;
     self.sessions = JSON.parse(localStorage.getItem("observadorSessionsInfo"))
-    self.actualSession = sessions[localStorage.getItem("actualSessionInfo")];
+    self.actSessionNum = localStorage.getItem("actualSessionInfo")
+    self.actualSession = sessions[actSessionNum];
     self.sessionName = ko.observable(actualSession["name"]);
     self.subjectArray = self.actualSession["subjectArray"];
-    console.log(subjectArray)
+    self.timerSession = ko.observable('00:00:00');
+    self.timerInterval = ko.observable('00:00:00');
+    self.sesTotalTime = ko.observable(self.actualSession["sessionLength"] * 60);
+    // console.log(self.actualSession)
+    
 
+    //setting the session timer
+    setSessionTimer = function(){
+        if (self.sesTotalTime >= 60){
+            var hours = Math.floor(self.sesTotalTime / 3600);
+            var minutes = Math.floor(self.sesTotalTime / 60) - hours * 60;
+            createChronometer(self.sesTotalTime);
+        }
+    }()
+    
+    setIntervalTimer = function(){
+
+    }()
+
+    guardar = function(){
+        localStorage.setItem("observadorSessionsInfo", JSON.stringify(sessions))
+    }
+
+    cancelar = function(){
+        window.location.href = window.location.href.replace("html/observation.html", "")
+    }
 
     getTotal = function(subject){
         var res = 0;
@@ -52,50 +77,78 @@ var observation = function(){
         }
     }
 
+    beep = function(){
+        var snd = new Audio("data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");  
+        snd.play();
+    }
+
     //Chronometer settings
+
+    function createChronometer(timer, hours, minutes, seconds = 0){
+        var newTime = "00:00:00";
+        if (hours < 10){
+            newTime = "0" + hours + ":";
+        } else{
+            newTime = hours + ":";
+        }
+        if (minutes < 10){
+            newTime += "0" + minutes + ":";
+        } else{
+            newTime += minutes + ":";
+        }
+        if (seconds < 10){
+            newTime += "0" + seconds;
+        } else{
+            newTime += seconds;
+        }
+        timer(newTime)
+    }
+
+    function chronometer(timer, total){
+        if (total()-1 < 0) {
+            
+            timer("00:00:00");
+            console.log(total())
+            console.log("termine")
+        } else{
+            var hours = Math.floor(total() / 3600);
+            var minutes = Math.floor(total() / 60) - hours * 60;
+            var seconds = total() - minutes * 60 - hours * 3600
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            
+            total(total()-1)
+            timer(hours + ":" + minutes + ":" + seconds);
+        }
+    }
+
 
     let hours = `00`,
       minutes = `00`,
       seconds = `00`,
-      chronometerDisplay = document.querySelector(`[data-chronometer]`),
       chronometerCall
 
-    function chronometer() {
-        seconds ++
-
-        if (seconds < 10) seconds = `0` + seconds
-
-        if (seconds > 59) {
-        seconds = `00`
-        minutes ++
-
-        if (minutes < 10) minutes = `0` + minutes
-        }
-
-        if (minutes > 59) {
-        minutes = `00`
-        hours ++
-        
-        if (hours < 10) hours = `0` + hours
-        }
-
-        chronometerDisplay.textContent = `${hours}:${minutes}:${seconds}`
-    }
-
-    play.onclick = (event) => {
-        chronometerCall = setInterval(chronometer, 1000)
+    $("#play").click(function(event){
+        chronometerCall = setInterval(function(){
+            chronometer(timerSession, sesTotalTime);
+            chronometer(timerInterval)
+        }, 1000)
         event.target.setAttribute(`disabled`,``)
-    }
+    })
 
-    pause.onclick = () => {
+    $("#pause").click(function(){
         clearInterval(chronometerCall)
         play.removeAttribute(`disabled`)
-    }
+    })
 
-    reset.onclick = () => {
+    $("#reset").click(reset)
+
+    reset = function(){
         clearInterval(chronometerCall)
         play.removeAttribute(`disabled`)
-        chronometerDisplay.textContent = `00:00:00`
         
         hours = `00`,
         minutes = `00`,

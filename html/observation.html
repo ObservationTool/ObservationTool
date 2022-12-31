@@ -15,7 +15,8 @@
                     <th data-bind="text : $data"></th>
                 </tr>
                 <tr class = "categories-row" >
-                    <td data-bind="foreach: Object.keys(subjectArray[$data])"><button class="categories-btn" 
+                    <td data-bind="foreach: Object.keys(subjectArray[$data])">
+                        <button class="categories-btn" 
                             data-bind="text : $data + ' ' + subjectArray[$parent][$data], click : function(data, event) { categoryClick($parent, data, $element) }">
                         </button>
                     </td>
@@ -26,14 +27,18 @@
             </table>
         </div>
         <div class="cronometer-container">
-            <h3 data-chronometer>00:00:00</h3>
+            <h3 class="data-chronometer" id = "session-length" data-bind="text : timerSession">00:00:00</h3>
+            <h3 class="data-chronometer" id = "interval" data-bind="text : timerInterval">00:00:00</h3>
             <button id="play">play</button>
             <button id="pause">pause</button>
             <button id="reset">reset</button>
         </div>
+        <br>
         <div class="button-container">
-            <button id = "guardar" data-bind="click : function(data, event) { guardarExcel('categories-table') }">Guardar</button>
-            <button>Cancelar</button>
+            <button onclick="beep()"></button>
+            <button data-bind="click : guardar">Guardar</button>
+            <button data-bind="click : cancelar">Cancelar</button>
+            <button id = "convertirExcel" data-bind="click : function(data, event) { guardarExcel('categories-table') }">Convertir a excel</button>
         </div>
         
     </div>
