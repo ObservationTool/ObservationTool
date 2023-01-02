@@ -28,6 +28,7 @@ input{
   border-left: none;
   border-top: none;
   border: bottom 1px;
+  font-size: 16px;
 }
 
 label{
