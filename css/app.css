@@ -3,15 +3,18 @@
 * {
     font-family: 'Roboto Condensed', sans-serif;
    }
+   
 body{
     background-color: #72e7cc;
 }
+
 h1{
     font-family: 'Roboto Slab', serif;
     font-size: 60px;
     color: #0d097c;
     text-align: center;
 }
+
 h2{
     font-size: 30px;
     text-align: center;
@@ -19,12 +22,14 @@ h2{
 }
 
 input{
+  color: #fffcbc;
   background-color: transparent;
   border-right: none;
   border-left: none;
   border-top: none;
   border: bottom 1px;
 }
+
 label{
   margin-top:20px;
   display:inline-block;

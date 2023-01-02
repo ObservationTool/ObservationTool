@@ -23,7 +23,6 @@
     </div>
     <div class="form-container">
         <form id = "session-form">
-            
             <label for="name">Nombre</label>
             <input id = "name" type="text" placeholder="John Doe" required>
             
@@ -49,25 +48,24 @@
             <label for="columns">Columnas</label>
             <input id = "columns" value = 1 type="number">
 
-            <div>
+            <div class="input-text">
                 <label for="subjects">Sujetos</label>
                 <input id = "subjects" type="text" placeholder = "John Doe" required>
-                <button id = "addSubj" type = "button">Agregar</button>
+                <button id = "addSubj" type = "button">+</button>
             </div>
             <div id="subj-container"></div>
             
-            <div>
+            <div class="input-text">
                 <label for="categories">Categorias</label>
                 <input id = "categories" type="text" placeholder = "Categoria" required>
-                <button id = "addCat" type = "button" >Agregar</button>
+                <button id = "addCat" type = "button" >+</button>
             </div>
             <div id="cat-container"></div>
-
-            <div class="btn-container">
-                <button id = "submitSession" class="btn" type = "submit">Aceptar</button>
-                <button id = "cacelSession" class="btn" type = "button">Cancelar</button>
-            </div>
         </form>
+        <div class="btn-container form-buttons">
+            <button id = "submitSession" class="btn" type = "submit">Aceptar</button>
+            <button id = "cacelSession" class="btn" type = "button">Cancelar</button>
+        </div>
     </div>
     <script src = "lib/jquery.js"></script>
     <script src = "js/index.js"></script>
