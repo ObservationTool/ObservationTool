@@ -95,7 +95,5 @@ label{
 .close:hover {background: #680039;}
 
 .form-buttons{
-  margin-top: 5%;
-  position: absolute;
   bottom: 5%;
 }
