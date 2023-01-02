@@ -62,6 +62,7 @@ var index = (function(){
             $(".sessionList li").last().on("click", (function(sessionIndex){
                 return function(){
                     localStorage.setItem("actualSessionInfo", sessionIndex);
+                    window.location.href -= "index.html"
                     window.location.href += "html/observation.html"
                 };
             })(sessionIndex));

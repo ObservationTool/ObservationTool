@@ -25,6 +25,10 @@
   background-color: #bb004b;
 }
 
+#intervalRandom, #beep, #flash{
+  width: fit-content;
+}
+
 .form-container{
     display: none;
     justify-content: center;

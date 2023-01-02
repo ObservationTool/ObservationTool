@@ -23,24 +23,25 @@
     </div>
     <div class="form-container">
         <form id = "session-form">
+            
             <label for="name">Nombre</label>
             <input id = "name" type="text" placeholder="John Doe" required>
-
+            
             <label for="sessionLength">Duracion (Minutos)</label>
             <input id = "sessionLength" placeholder="Duracion" type="number">
 
             <label for="intervalLengthSec">Intervalos (segundos)</label>
             <input id = "intervalLengthSec" placeholder="Intervalos" type="text">
 
-            <label for="intervalRandom">Intervalos variables</label>
-            <input id = "intervalRandom" placeholder = "Intervalos variables" type="checkbox">
+            <label for="intervalRandom"><input id = "intervalRandom" type="checkbox">Intervalos variables</label>
             <input id = "variableSeconds" value = 10 placeholder="Variable hasta (segundos)">
+            <br>
 
-            <label for="beep">Beep</label>
-            <input id = "beep" type = "checkbox">
+            <label for="beep"><input id = "beep" type = "checkbox">Beep</label>
+            <br>
             
-            <label for="flash">Flash</label>
-            <input id = "flash" type="checkbox">
+            <label for="flash"><input id = "flash" type="checkbox">Flash</label>
+            <br>
 
             <label for="fontSize">Tamaño de la fuente</label>
             <input id = "fontSize" value = 12 type="number">
@@ -48,18 +49,24 @@
             <label for="columns">Columnas</label>
             <input id = "columns" value = 1 type="number">
 
-            <label for="subjects">Sujetos</label>
-            <input id = "subjects" type="text" placeholder = "John Doe" required>
-            <button id = "addSubj" type = "button">Agregar</button>
+            <div>
+                <label for="subjects">Sujetos</label>
+                <input id = "subjects" type="text" placeholder = "John Doe" required>
+                <button id = "addSubj" type = "button">Agregar</button>
+            </div>
             <div id="subj-container"></div>
-
-            <label for="categories">Categorias</label>
-            <input id = "categories" type="text" placeholder = "Categoria" required>
-            <button id = "addCat" type = "button">Agregar</button>
+            
+            <div>
+                <label for="categories">Categorias</label>
+                <input id = "categories" type="text" placeholder = "Categoria" required>
+                <button id = "addCat" type = "button" >Agregar</button>
+            </div>
             <div id="cat-container"></div>
 
-            <button id = "submitSession" type = "submit">Aceptar</button>
-            <button id = "cacelSession" type = "button">Cancelar</button>
+            <div class="btn-container">
+                <button id = "submitSession" class="btn" type = "submit">Aceptar</button>
+                <button id = "cacelSession" class="btn" type = "button">Cancelar</button>
+            </div>
         </form>
     </div>
     <script src = "lib/jquery.js"></script>

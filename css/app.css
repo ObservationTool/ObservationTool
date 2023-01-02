@@ -17,6 +17,19 @@ h2{
     text-align: center;
     color: #0d097c;
 }
+
+input{
+  background-color: transparent;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  border: bottom 1px;
+}
+label{
+  margin-top:20px;
+  display:inline-block;
+}
+
 .btn-container{
     text-align: center;
 }
@@ -96,3 +109,4 @@ h2{
   outline: 0;
   box-shadow: rgb(0, 0, 0) 2px 2px 0 0, #000 2px 2px 0 1px;
 }
+
