@@ -96,4 +96,6 @@ label{
 
 .form-buttons{
   margin-top: 5%;
+  position: absolute;
+  bottom: 5%;
 }
