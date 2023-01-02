@@ -21,7 +21,7 @@ var index = (function(){
         showForm();
     })
 
-    cancelSession = $("#cacelSession");
+    cancelSession = $("#cancelSession");
     cancelSession.click(function(){
         showHome();
         $("#session-form").trigger("reset");

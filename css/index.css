@@ -7,12 +7,16 @@ label{
   display: none;
 }
 
-#createSession{
-  background-color: #1e90ff;
+#createSession, #submitSession{
+  background-color: #fffcbc;
+}#createSession:hover, #submitSession:hover{
+  color: #0e819e;
 }
 
-#borrar-sesiones{
-  background-color: #bb004b;
+#borrar-sesiones, #cancelSession{
+  background-color: #eccc5f;
+}#borrar-sesiones:hover, #cancelSession:hover{
+  color: #910050;
 }
 
 #intervalRandom, #beep, #flash{
@@ -93,7 +97,9 @@ label{
   transform: translate(0%, -50%);
 }
 
-.close:hover {background: #680039;}
+.close:hover {
+  background: #680039;
+}
 
 .form-buttons{
   bottom: 5%;
