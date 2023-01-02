@@ -18,8 +18,13 @@ var index = (function(){
     //Abre el formulario para crear una nueva sesio
     createSession = $("#createSession");
     createSession.click(function(){
-        formContainer.css("display", "flex");
-        homeContainer.css("display", "none");
+        showForm();
+    })
+
+    cancelSession = $("#cacelSession");
+    cancelSession.click(function(){
+        showHome();
+        $("#session-form").trigger("reset");
     })
 
     //Añade los sujetos del formulario a una lista
@@ -117,12 +122,19 @@ var index = (function(){
         } else{
             alert("Esta session ya ha sido agregada")
         }
-
-        //guarda el cuestionario
-        formContainer.css("display", "none");
-        homeContainer.css("display", "block");
+        showHome();
         $("#session-form").trigger("reset");
         console.log(localStorage.getItem("observadorSessionsInfo"))
     };
     
+    //Guarda el cuestionario y muestra el menu principal
+    showHome = function(){
+        formContainer.css("display", "none");
+        homeContainer.css("display", "block");
+    }
+
+    showForm = function(){
+        formContainer.css("display", "flex");
+        homeContainer.css("display", "none");
+    }
 })()
