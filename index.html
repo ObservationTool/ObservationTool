@@ -23,38 +23,54 @@
     </div>
     <div class="form-container">
         <form id = "session-form">
-            <label for="name">Nombre</label>
-            <input id = "name" type="text" placeholder="John Doe" required>
-            
-            <label for="sessionLength">Duracion (Minutos)</label>
-            <input id = "sessionLength" placeholder="Duracion" type="number">
-
-            <label for="intervalLengthSec">Intervalos (segundos)</label>
-            <input id = "intervalLengthSec" placeholder="Intervalos" type="text">
-
-            <label for="intervalRandom"><input id = "intervalRandom" type="checkbox">Intervalos variables</label>
-            <input id = "variableSeconds" value = 10 placeholder="Variable hasta (segundos)">
-            <br>
-
-            <label for="beep"><input id = "beep" type = "checkbox">Beep</label>
-            <br>
-            
-            <label for="flash"><input id = "flash" type="checkbox">Flash</label>
-            <br>
-
-            <label for="fontSize">Tamaño de la fuente</label>
-            <input id = "fontSize" value = 12 type="number">
-
-            <label for="columns">Columnas</label>
-            <input id = "columns" value = 1 type="number">
-
-            <div class="input-text">
-                <label for="subjects">Sujetos</label>
-                <input id = "subjects" type="text" placeholder = "John Doe" required>
-                <button id = "addSubj" type = "button">+</button>
+            <div class="form-section">
+                <label for="name">Nombre</label>
+                <input id = "name" type="text" placeholder="John Doe" required>
             </div>
-            <div id="subj-container"></div>
+
+            <div class="form-section">
+                <label for="sessionLength">Duracion (Minutos)</label>
+                <input id = "sessionLength" placeholder="Duracion" type="number">
+            </div>
+
+            <div class="form-section">
+                <label for="intervalLengthSec">Intervalos (segundos)</label>
+                <input id = "intervalLengthSec" placeholder="Intervalos" type="text">
+            </div>
+
+            <div class="form-section">
+                <label for="intervalRandom"><input id = "intervalRandom" type="checkbox">Intervalos variables</label>
+                <input id = "variableSeconds" value = 10 placeholder="Variable hasta (segundos)">
+            </div>
+
+            <div class="form-section">
+                <label for="beep"><input id = "beep" type = "checkbox">Beep</label>
+            </div>
             
+            <div class="form-section">
+                <label for="flash"><input id = "flash" type="checkbox">Flash</label>
+            </div>
+
+            <div class="form-section">
+                <label for="fontSize">Tamaño de la fuente</label>
+                <input id = "fontSize" value = 12 type="number">
+            </div>
+
+            <div class="form-section">
+                <label for="columns">Columnas</label>
+                <input id = "columns" value = 1 type="number">
+            </div>
+
+            <div class="form-section">
+                <div class="input-text">
+                    <label for="subjects">Sujetos</label>
+                    <input id = "subjects" type="text" placeholder = "John Doe" required>
+                    <button id = "addSubj" type = "button">+</button>
+                </div>
+                <div id="subj-container"></div>
+            </div>
+            
+            <div class="form-section"></div>
             <div class="input-text">
                 <label for="categories">Categorias</label>
                 <input id = "categories" type="text" placeholder = "Categoria" required>

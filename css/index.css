@@ -28,6 +28,11 @@ label{
   border-radius: 10%;
 }
 
+.form-section{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
 .input-text{
   position: relative;
 }

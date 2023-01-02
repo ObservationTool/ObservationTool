@@ -22,17 +22,17 @@ h2{
 }
 
 input{
-  color: #fffcbc;
   background-color: transparent;
   border-right: none;
   border-left: none;
   border-top: none;
   border: bottom 1px;
   font-size: 16px;
+} input:focus{
+  outline: none;
 }
 
 label{
-  margin-top:20px;
   display:inline-block;
 }
 
