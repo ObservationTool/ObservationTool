@@ -16,6 +16,24 @@ table{
 .data-chronometer{
     text-align: right;
 }
+.options{
+  padding: 12px;
+}
+.btn-container{
+  position: absolute;
+  left: 5%;
+  bottom: 7%;
+  text-align: left;
+}
+.footer{
+  position: absolute;
+  width: 99%;
+  bottom: 0%;
+  height: 25vh;
+}
+.container{
+  height: 70vh;
+}
 
 /* CSS */
 .button-28 {
