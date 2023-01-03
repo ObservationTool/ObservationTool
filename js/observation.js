@@ -114,10 +114,11 @@ var observation = function(){
     let chronometerCall;
 
     $("#play").click(function(event){
-        chronometerCall = setInterval(function(){
-            chronometer(timerSession, sesTotalTime)
-        }, 1000)
         event.target.setAttribute(`disabled`,``)
+        chronometerCall = setInterval(function(){
+            chronometer(timerSession, sesTotalTime);
+            chronometer(timerInterval, intTotalTime, true)
+        }, 1000)
     })
 
     $("#pause").click(function(){
