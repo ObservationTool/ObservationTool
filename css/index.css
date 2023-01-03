@@ -69,9 +69,11 @@ label{
 }
 
 .sessionList {
-  margin-left: 20%;
-  margin-right: 20%;
+  padding-inline-start: 0px;
+  margin-left: 10%;
+  margin-right: 10%;
 }.sessionList li {
+  left: 0;
   border: 1px solid #ddd;
   margin-top: 1px;
   background-color: #cd0170;
