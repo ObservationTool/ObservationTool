@@ -34,6 +34,7 @@ var index = (function(){
         newSubj = $("#subjects").val();
         if(newSubj != ""){
             $("#subj-container").append("<h3>" + newSubj + "</h3")
+            $("#subjects").val("")
             self.subjects.push(newSubj);
         } else {
             alert("Agregue el nombre del sujeto")
@@ -47,6 +48,7 @@ var index = (function(){
         newCat = $("#categories").val();
         if(newCat != ""){
             $("#cat-container").append("<h3>" + newCat + "</h3")
+            $("#categories").val("")
             self.categories.push(newCat);
         } else {
             alert("Agregue el nombre del sujeto")
@@ -93,9 +95,8 @@ var index = (function(){
     })
     
     //Guarda toda la informacion del cuestionario en el localstorage
-    document.querySelector(".form-container").addEventListener('submit', submitSession);
-    function submitSession(event){
-        event.preventDefault();
+    function submitSession(){
+        console.log("si entro")
         if (sessionsInfo[$("#name").val()] == null){
             var newItem = {
                 name : $("#name").val(),
@@ -126,11 +127,13 @@ var index = (function(){
         $("#session-form").trigger("reset");
         console.log(localStorage.getItem("observadorSessionsInfo"))
     };
+    $("#submitSession").click(submitSession);
     
     //Guarda el cuestionario y muestra el menu principal
     showHome = function(){
-        formContainer.css("display", "none");
-        homeContainer.css("display", "block");
+        window.location.reload();
+        // formContainer.css("display", "none");
+        // homeContainer.css("display", "block");
     }
 
     showForm = function(){
