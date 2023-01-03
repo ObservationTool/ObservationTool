@@ -12,7 +12,6 @@ var observation = function(){
     self.sesTotalTime = ko.observable(self.actualSession["sessionLength"] * 60);
     self.intTotalTime = ko.observable(self.actualSession["intervalLengthSec"]);
     console.log(self.actualSession)
-    
 
     //setting the session timer
     setSessionTimer = function(){
@@ -46,10 +45,11 @@ var observation = function(){
         return res;
     }
 
-    categoryClick = function(sujeto, boton,  element){
+    categoryClick = function(sujeto, boton, element){
+        console.log(element)
         subjectArray[sujeto][boton] += 1;
         element.innerText = boton + " " + subjectArray[sujeto][boton];
-        element.parentNode.parentNode.parentNode.childNodes[4].childNodes[1].childNodes[0].innerText = "Total " + getTotal(sujeto)
+        // element.parentNode.parentNode.parentNode.childNodes[4].childNodes[1].childNodes[0].innerText = "Total " + getTotal(sujeto)
     }
 
     guardarExcel = function(tableID, filename = 'Datos_observacion'){
@@ -58,12 +58,8 @@ var observation = function(){
         var tableSelect = document.getElementById(tableID);
         var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
         
-        // Specify file name
         filename = filename?filename+'.xls':'excel_data.xls';
-        
-        // Create download link element
         downloadLink = document.createElement("a");
-        
         document.body.appendChild(downloadLink);
         
         if(navigator.msSaveOrOpenBlob){
@@ -72,13 +68,8 @@ var observation = function(){
             });
             navigator.msSaveOrOpenBlob( blob, filename);
         }else{
-            // Create a link to the file
             downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-        
-            // Setting the file name
             downloadLink.download = filename;
-            
-            //triggering the function
             downloadLink.click();
         }
     }

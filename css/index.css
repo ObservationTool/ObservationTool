@@ -14,7 +14,7 @@ label{
 }
 
 #borrar-sesiones, #cancelSession{
-  background-color: #eccc5f;
+  background-color: #fffcbc;
 }#borrar-sesiones:hover, #cancelSession:hover{
   color: #910050;
 }

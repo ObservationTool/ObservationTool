@@ -1,3 +1,14 @@
+table{
+    margin: auto;
+}
 .categories-btn{
     width: 100%;
+}
+.cronometer-container{
+    position:absolute;
+    right: 5%;
+    bottom: 7%;
+}
+.data-chronometer{
+    text-align: right;
 }
