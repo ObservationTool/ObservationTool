@@ -1,3 +1,6 @@
+body{
+  transition: background-color 0.5s;
+}
 table{
     margin: auto;
     text-align: center;
@@ -8,8 +11,8 @@ table{
 .chronometer-btn{
   background-color: transparent;
   border: none;
-  width: 15px;
-  height: 15px;
+  width: fit-content;
+  height: fit-content;
   margin: 5px;
 }.chronometer-btn img{
   pointer-events: none;

@@ -82,7 +82,10 @@ var observation = function(){
     }
 
     flash = function(){
-        console.log("flash")
+        $("body").css("background-color", "white");
+        setTimeout(() => {
+            $("body").css("background-color", "#72e7cc");
+        }, 500); 
     }
 
     //Cronometro
