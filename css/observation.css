@@ -8,12 +8,13 @@ table{
 .chronometer-btn{
   background-color: transparent;
   border: none;
+  width: 15px;
+  height: 15px;
+  margin: 5px;
 }.chronometer-btn img{
   pointer-events: none;
-  min-width: 10px;
-  min-height: 10px;
-  max-width: 15px;
-  max-height: 15px;
+  width: 15px;
+  height: 15px;
 }
 .categories-btn{
     width: 100%;
