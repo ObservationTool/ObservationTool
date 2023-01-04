@@ -131,7 +131,6 @@ var observation = function(){
     })
 
     reset = function(timer, total){
-        
         clearInterval(chronometerCall)
         play.removeAttribute(`disabled`)
     }

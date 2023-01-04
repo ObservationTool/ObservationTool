@@ -51,7 +51,7 @@ var index = (function(){
             $("#categories").val("")
             self.categories.push(newCat);
         } else {
-            alert("Agregue el nombre del sujeto")
+            alert("Agregue el nombre de la categoria")
         }
     })
 
@@ -96,18 +96,31 @@ var index = (function(){
     
     //Guarda toda la informacion del cuestionario en el localstorage
     function submitSession(){
-        console.log("si entro")
-        if (sessionsInfo[$("#name").val()] == null){
+        var entryname = $("#name").val();
+        var entrysessionLength = $("#sessionLength").val();
+        var entryintervalLengthSec = $("#intervalLengthSec").val();
+        var entryintervalRandom = $("#intervalRandom").val();
+        var entryvariableSeconds = $("#variableSeconds").val();
+        var entrybeep = $("#beep").val();
+        var entryflash = $("#flash").val();
+        var subjectArray = createSubjectArray();
+        if (Object.keys(subjectArray).length == 0){
+            swal({
+                title: "Agregue al menos un sujeto"
+            });
+        }else if (categories.length == 0){
+            swal({
+                title: "Agregue al menos una categoria"
+            });
+        }else if (entryname != "" && entrysessionLength != "" && (entryintervalLengthSec != "" || (entryintervalRandom == "on" && entryvariableSeconds != ""))){
             var newItem = {
-                name : $("#name").val(),
-                sessionLength : $("#sessionLength").val(),
-                intervalLengthSec : $("#intervalLengthSec").val(),
-                intervalRandom : $("#intervalRandom").val(),
-                variableSeconds : $("#variableSeconds").val(),
-                beep : $("#beep").val(),
-                flash : $("#flash").val(),
-                fontSize : $("#fontSize").val(),
-                columns : $("#columns").val(),
+                name : entryname,
+                sessionLength : entrysessionLength,
+                intervalLengthSec : entryintervalLengthSec,
+                intervalRandom : entryintervalRandom,
+                variableSeconds : entryvariableSeconds,
+                beep : entrybeep,
+                flash : entryflash,
                 subjectArray : createSubjectArray()
             }
             sessionList.append('<li>' + newItem["name"] + '<span class="close">x</span></li>');
@@ -117,23 +130,22 @@ var index = (function(){
             $(".sessionList li").last().on("click", (function(sessionIndex){
                 return function(){
                     localStorage.setItem("actualSessionInfo", sessionIndex);
-                    window.location.href += "html/observation.html"
+                    window.location.href += "observation.html"
                 };
             })(Object.keys(sessionsInfo).length));
+            showHome();
+            $("#session-form").trigger("reset");
         } else{
-            alert("Esta session ya ha sido agregada")
+            swal({
+                title: "Agregar todos los campos"
+            });
         }
-        showHome();
-        $("#session-form").trigger("reset");
-        console.log(localStorage.getItem("observadorSessionsInfo"))
     };
     $("#submitSession").click(submitSession);
     
     //Guarda el cuestionario y muestra el menu principal
     showHome = function(){
         window.location.reload();
-        // formContainer.css("display", "none");
-        // homeContainer.css("display", "block");
     }
 
     showForm = function(){

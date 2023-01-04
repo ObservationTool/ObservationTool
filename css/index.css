@@ -106,3 +106,24 @@ label{
 .form-buttons{
   bottom: 5%;
 }
+
+.swal-modal {
+  background-color: #910050;
+  border: 1px solid #fffcbc;
+}
+.swal-title{
+  color: #fffcbc;
+  font-size: 20px;
+}
+.swal-footer{
+  text-align: center;
+}
+.swal-button {
+  color: #fffcbc;
+  padding: 7px 19px;
+  border-radius: 2px;
+  border-color: #fffcbc;
+  background-color: #72003d;
+  font-size: 16px;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
