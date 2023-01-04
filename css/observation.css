@@ -5,6 +5,11 @@ table{
     overflow-y: scroll;
     overflow-x: scroll;
 }
+
+.chronometer-btn{
+  width: 10px;
+  height: 10px;
+}
 .categories-btn{
     width: 100%;
 }

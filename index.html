@@ -24,18 +24,18 @@
     <div class="form-container">
         <form id = "session-form">
             <div class="form-section">
-                <label for="name">Nombre</label>
+                <label for="name">Nombre<span class="required">*</span></label>
                 <input id = "name" type="text" placeholder="John Doe" required>
             </div>
 
             <div class="form-section">
-                <label for="sessionLength">Duracion (Minutos)</label>
-                <input id = "sessionLength" placeholder="Duracion" type="number">
+                <label for="sessionLength">Duracion (Minutos)<span class="required">*</span></label>
+                <input id = "sessionLength" placeholder="Duracion" type="number" min="1">
             </div>
 
             <div class="form-section">
-                <label for="intervalLengthSec">Intervalos (segundos)</label>
-                <input id = "intervalLengthSec" placeholder="Intervalos" type="text">
+                <label for="intervalLengthSec">Intervalos (segundos)<span class="required">*</span></label>
+                <input id = "intervalLengthSec" placeholder="Intervalos" type="number" min="1">
             </div>
 
             <div class="form-section">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="form-section">
-                <label for="beep"><input id = "beep" type = "checkbox">Beep</label>
+                <label for="beep"><input id = "beep" type = "checkbox" checked>Beep</label>
             </div>
             
             <div class="form-section">

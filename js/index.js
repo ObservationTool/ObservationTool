@@ -112,6 +112,10 @@ var index = (function(){
             swal({
                 title: "Agregue al menos una categoria"
             });
+        } else if(entrysessionLength <= 0 || (entryintervalLengthSec <= 0 || (entryintervalRandom == "on" && entryvariableSeconds <= 0))){
+            swal({
+                title: "Agregar un numero valido"
+            });
         }else if (entryname != "" && entrysessionLength != "" && (entryintervalLengthSec != "" || (entryintervalRandom == "on" && entryvariableSeconds != ""))){
             var newItem = {
                 name : entryname,

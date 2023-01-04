@@ -33,6 +33,10 @@ label{
   overflow-y: scroll;
 }
 
+.required{
+  color: #910050;
+}
+
 .form-section{
   margin-top: 5%;
   margin-bottom: 5%;
