@@ -1,4 +1,5 @@
 var observation = function(){
+    
     self = this;
     self.sessions = JSON.parse(localStorage.getItem("observadorSessionsInfo"))
     self.actSessionNum = localStorage.getItem("actualSessionInfo")
@@ -8,10 +9,13 @@ var observation = function(){
     self.timerSession = ko.observable('00:00:00');
     self.timerInterval = ko.observable('00:00:00');
     self.sesInitialTime = self.actualSession["sessionLength"] * 60;
-    self.intInitialTime = self.actualSession["intervalLengthSec"];
     self.sesTotalTime = ko.observable(self.actualSession["sessionLength"] * 60);
+    self.intInitialTime = self.actualSession["intervalLengthSec"];
     self.intTotalTime = ko.observable(self.actualSession["intervalLengthSec"]);
-    console.log(self.actualSession["beep"]);
+    if (self.actualSession["intervalRandom"] == "on"){
+        self.intInitialTime = self.actualSession["variableSeconds"];
+        self.intTotalTime = ko.observable(self.actualSession["variableSeconds"]);
+    }
     console.log(self.actualSession)
 
     //setting the session timer
@@ -47,10 +51,8 @@ var observation = function(){
     }
 
     categoryClick = function(sujeto, boton, element){
-        console.log(element)
         subjectArray[sujeto][boton] += 1;
         element.innerText = boton + " " + subjectArray[sujeto][boton];
-        // element.parentNode.parentNode.parentNode.childNodes[4].childNodes[1].childNodes[0].innerText = "Total " + getTotal(sujeto)
     }
 
     guardarExcel = function(tableID, filename = 'Datos_observacion'){
@@ -127,8 +129,6 @@ var observation = function(){
     let chronometerCall;
 
     $("#play").click(function(event){
-        var target = $( event.target );
-        console.log(target)
         event.target.setAttribute(`disabled`,``)
         chronometerCall = setInterval(function(){
             chronometer(timerSession, sesTotalTime);

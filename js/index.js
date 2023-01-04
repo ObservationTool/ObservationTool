@@ -65,14 +65,28 @@ var index = (function(){
     sessionList = $(".sessionList");
     if (sessionsInfo != null){
         Object.keys(sessionsInfo).forEach(sessionIndex => {
-            sessionList.append('<li>' + sessionsInfo[sessionIndex]["name"] + '<span class="close">x</span></li>');
-            $(".sessionList li").last().on("click", (function(sessionIndex){
+            sessionList.append('<li id = "' + sessionIndex + '"> <div class = "session-name">' + sessionsInfo[sessionIndex]["name"] + '</div><span class="delete-ses">x</span></li>');
+            $(".sessionList li .session-name").last().on("click", (function(sessionIndex){
                 return function(){
                     localStorage.setItem("actualSessionInfo", sessionIndex);
                     window.location.href -= "index.html"
                     window.location.href += "html/observation.html"
                 };
             })(sessionIndex));
+        });
+    }
+
+    var closebtns = document.getElementsByClassName("delete-ses");
+    var i;
+
+    for (i = 0; i < closebtns.length; i++) {
+        closebtns[i].addEventListener("click", function() {
+            // this.parentElement.style.display = 'none';
+            // delete sessionsInfo[sessionIndex.parentElement];
+            delElement = this.parentElement.id;
+            delete sessionsInfo[delElement];
+            localStorage.setItem("observadorSessionsInfo", JSON.stringify(sessionsInfo));
+            showHome();
         });
     }
 
@@ -127,16 +141,8 @@ var index = (function(){
                 flash : entryflash,
                 subjectArray : createSubjectArray()
             }
-            sessionList.append('<li>' + newItem["name"] + '<span class="close">x</span></li>');
             sessionsInfo[Object.keys(sessionsInfo).length] = newItem;
             localStorage.setItem("observadorSessionsInfo", JSON.stringify(sessionsInfo))
-
-            $(".sessionList li").last().on("click", (function(sessionIndex){
-                return function(){
-                    localStorage.setItem("actualSessionInfo", sessionIndex);
-                    window.location.href += "observation.html"
-                };
-            })(Object.keys(sessionsInfo).length));
             showHome();
             $("#session-form").trigger("reset");
         } else{
