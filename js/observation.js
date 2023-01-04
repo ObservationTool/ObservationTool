@@ -124,6 +124,8 @@ var observation = function(){
     let chronometerCall;
 
     $("#play").click(function(event){
+        var target = $( event.target );
+        console.log(target)
         event.target.setAttribute(`disabled`,``)
         chronometerCall = setInterval(function(){
             chronometer(timerSession, sesTotalTime);

@@ -5,10 +5,15 @@ table{
     overflow-y: scroll;
     overflow-x: scroll;
 }
-
 .chronometer-btn{
-  width: 10px;
-  height: 10px;
+  background-color: transparent;
+  border: none;
+}.chronometer-btn img{
+  pointer-events: none;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 15px;
+  max-height: 15px;
 }
 .categories-btn{
     width: 100%;
